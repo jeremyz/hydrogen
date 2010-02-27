@@ -79,7 +79,7 @@ MainForm::MainForm( QApplication *app, const QString& songFilename )
  : QMainWindow( 0, 0 )
  , Object( "MainForm" )
 {
-	setMinimumSize( QSize( 1000, 600 ) );
+	//setMinimumSize( QSize( 1000, 600 ) );
 	setWindowIcon( QPixmap( Skin::getImagePath() + "/icon16.png" ) );
 
 	if (::socketpair(AF_UNIX, SOCK_STREAM, 0, sigusr1Fd))
@@ -179,8 +179,6 @@ MainForm::MainForm( QApplication *app, const QString& songFilename )
 	
 //beatcouter
 	Hydrogen::get_instance()->setBcOffsetAdjust();
-// director
-	EventQueue::get_instance()->push_event( EVENT_METRONOME, 1 );
 
 }
 
@@ -1126,7 +1124,7 @@ void MainForm::openSongFile( const QString& sFilename )
 	updateRecentUsedSongList();
 	engine->setSelectedPatternNumber( 0 );
 	HydrogenApp::get_instance()->getSongEditorPanel()->updatePositionRuler();
-	EventQueue::get_instance()->push_event( EVENT_METRONOME, 1 );
+	EventQueue::get_instance()->push_event( EVENT_METRONOME, 2 );
 }
 
 

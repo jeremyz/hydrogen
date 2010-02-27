@@ -169,10 +169,13 @@ void HydrogenApp::setupSinglePanedInterface()
 	pSplitter->setOrientation( Qt::Vertical );
 	pSplitter->setOpaqueResize( true );
 
+	QTabWidget *pTab = new QTabWidget( NULL );
+
 	// SONG EDITOR
-	m_pSongEditorPanel = new SongEditorPanel( pSplitter );
+	m_pSongEditorPanel = new SongEditorPanel( pTab );
 	WindowProperties songEditorProp = pPref->getSongEditorProperties();
 	m_pSongEditorPanel->resize( songEditorProp.width, songEditorProp.height );
+	pTab->addTab( m_pSongEditorPanel, "Song Editor" );
 
 	// this HBox will contain the InstrumentRack and the Pattern editor
 	QWidget *pSouthPanel = new QWidget( pSplitter );
@@ -192,9 +195,13 @@ void HydrogenApp::setupSinglePanedInterface()
 	pEditorHBox->addWidget( m_pPatternEditorPanel );
 	pEditorHBox->addWidget( m_pInstrumentRack );
 
+	//pTab->addTab( m_pInstrumentRack, "Instrument Rack" );
+	//pTab->addTab( m_pPatternEditorPanel, "Pattern Editor" );
+	pTab->addTab( pSouthPanel, " Instrument + Pattern " );
+
+
 	// PLayer control
 	m_pPlayerControl = new PlayerControl( NULL );
-
 
 	QWidget *mainArea = new QWidget( m_pMainForm );	// this is the main widget
 	m_pMainForm->setCentralWidget( mainArea );
@@ -203,8 +210,8 @@ void HydrogenApp::setupSinglePanedInterface()
 	QVBoxLayout *pMainVBox = new QVBoxLayout();
 	pMainVBox->setSpacing( 5 );
 	pMainVBox->setMargin( 0 );
-	pMainVBox->addWidget( m_pPlayerControl );
-	pMainVBox->addWidget( pSplitter );
+	pMainVBox->addWidget( m_pPlayerControl);
+	pMainVBox->addWidget( pTab );
 
 	mainArea->setLayout( pMainVBox );
 
@@ -213,16 +220,21 @@ void HydrogenApp::setupSinglePanedInterface()
 
 	// MIXER
 	m_pMixer = new Mixer(0);
-	WindowProperties mixerProp = pPref->getMixerProperties();
-	m_pMixer->resize( mixerProp.width, mixerProp.height );
-	m_pMixer->move( mixerProp.x, mixerProp.y );
+	//WindowProperties mixerProp = pPref->getMixerProperties();
+	//m_pMixer->resize( mixerProp.width, mixerProp.height );
+	//m_pMixer->move( mixerProp.x, mixerProp.y );
+
 	m_pMixer->updateMixer();
+	pTab->addTab(m_pMixer,"Mixer");
+
+
+	/*
 	if ( mixerProp.visible ) {
 		m_pMixer->show();
 	}
 	else {
 		m_pMixer->hide();
-	}
+	}*/
 
 
 	// HELP BROWSER
