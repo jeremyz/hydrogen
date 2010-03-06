@@ -79,7 +79,7 @@ MainForm::MainForm( QApplication *app, const QString& songFilename )
  : QMainWindow( 0, 0 )
  , Object( "MainForm" )
 {
-	//setMinimumSize( QSize( 1000, 600 ) );
+	setMinimumSize( QSize( 985, 495 ) );
 	setWindowIcon( QPixmap( Skin::getImagePath() + "/icon16.png" ) );
 
 	if (::socketpair(AF_UNIX, SOCK_STREAM, 0, sigusr1Fd))
