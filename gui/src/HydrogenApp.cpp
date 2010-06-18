@@ -197,8 +197,10 @@ void HydrogenApp::setupSinglePanedInterface()
 
 	//pTab->addTab( m_pInstrumentRack, "Instrument Rack" );
 	//pTab->addTab( m_pPatternEditorPanel, "Pattern Editor" );
+	pTab->setMovable(true);
+	pTab->setTabsClosable(true);
 	pTab->addTab( pSouthPanel, " Instrument + Pattern " );
-
+	
 
 	// PLayer control
 	m_pPlayerControl = new PlayerControl( NULL );
