@@ -170,6 +170,7 @@ void HydrogenApp::setupSinglePanedInterface()
 	pSplitter->setOpaqueResize( true );
 
 	QTabWidget *pTab = new QTabWidget( NULL );
+	pTab->setStyleSheet("color: white;");
 
 	// SONG EDITOR
 	m_pSongEditorPanel = new SongEditorPanel( pTab );
