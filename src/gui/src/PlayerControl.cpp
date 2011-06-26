@@ -188,20 +188,39 @@ PlayerControl::PlayerControl(QWidget *parent)
 	connect( m_pSongLoopBtn, SIGNAL( clicked(Button*) ), this, SLOT( songLoopBtnClicked(Button*) ) );
 
 
-
-
+        ToggleButton *clickModePattern = new ToggleButton(
+                                         pControlsPanel,
+                                         "/playerControlPanel/pattern_mode.png",
+                                         "/playerControlPanel/pattern_mode.png",
+                                         "/playerControlPanel/pattern_mode.png",
+                                         QSize( 69, 9 )
+        );
+        clickModePattern->move(180,5);
+        clickModePattern->setToolTip( trUtf8("Pattern Mode") );
+        connect(clickModePattern, SIGNAL(clicked(Button*)), this, SLOT(liveModeBtnClicked(Button*)));
 	// Live mode button
 	m_pLiveModeBtn = new ToggleButton(
-                        pControlsPanel,
+                        clickModePattern,
 			"/playerControlPanel/statusLED_on.png",
 			"/playerControlPanel/statusLED_off.png",
 			"/playerControlPanel/statusLED_off.png",
-			QSize(11, 9)
+                        QSize(11, 9)
 	);
-        m_pLiveModeBtn->move(180, 5);
+        m_pLiveModeBtn->move(0, 0);
 	m_pLiveModeBtn->setPressed(true);
 	m_pLiveModeBtn->setToolTip( trUtf8("Pattern Mode") );
-	connect(m_pLiveModeBtn, SIGNAL(clicked(Button*)), this, SLOT(liveModeBtnClicked(Button*)));
+        connect(m_pLiveModeBtn, SIGNAL(clicked(Button*)), this, SLOT(liveModeBtnClicked(Button*)));
+
+        ToggleButton *clickModeSong = new ToggleButton(
+                                         pControlsPanel,
+                                         "/playerControlPanel/song_mode.png",
+                                         "/playerControlPanel/song_mode.png",
+                                         "/playerControlPanel/song_mode.png",
+                                         QSize( 69, 9 )
+        );
+        clickModeSong->move(253,5);
+        clickModeSong->setToolTip( trUtf8("Song Mode") );
+        connect(clickModeSong, SIGNAL(clicked(Button*)), this, SLOT(songModeBtnClicked(Button*)));
 
 	// Song mode button
 	m_pSongModeBtn = new ToggleButton(
